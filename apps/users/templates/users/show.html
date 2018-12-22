@@ -1,0 +1,59 @@
+{% extends 'users/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h3>{{ user.f_name }} {{ user.l_name }}</h3>
+<p>Register at: {{ user.created_at }}</p>
+<p>User id #{{ user.id }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Description: {{ user.description }}</p>
+
+    <form action="{% url 'users:message' user.id %}" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+        <label for="message">Leave a message for {{ user.f_name }}</label><br>
+        <textarea name="message"class="form-control" id="" placeholder="post a comment"></textarea>
+      </div>
+        <input type="submit" class="btn pull-right" id="right" value="Add Post">
+    </form>
+
+    <div class="written_comments">
+
+        {% for m in messages reversed %}
+        <div class="message_container">
+            {{ m.writer }} {{ m.created_at }}<br>
+            <div class="message">
+
+            {{ m.note }}
+            </div>
+        </div>
+
+            <div class="written_notes">
+                {% for note in notes reversed %}
+                    {% if m.id is note.writee.id %}
+                    <div class="notes">
+
+                    {{ note.note }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+                <form action="{% url 'users:comment' user.id %}" method="post">
+                {% csrf_token %}
+                  <div class="form-group">
+                      <input type="hidden" value="{{ m.id }}" name="id">
+                    <textarea name="comment" id="" class="form-control"  placeholder="write a note"></textarea>
+                  </div>
+                    <input type="submit" class="btn pull-right" id="right" value="Add Comment">
+                </form>
+            </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}
