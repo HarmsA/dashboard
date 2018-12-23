@@ -41,7 +41,6 @@ def register_process(request):
 def dashboard(request):
     if 'user_id' in request.session:
         users = User.objects.all()
-        print(users)
         context = {
             'users':users,
             'title':'Users'
@@ -76,7 +75,7 @@ def message(request, to_user_id):
         m = Message.objects.create_message(request.POST, to_user_id, user)
         print(m.writee.id)
         writer_id = User.objects.filter(id=m.writee.id)
-    return redirect('users:dashboard')
+    return redirect('users:show', m.writee_id)
 
 def comment(request, to_user_id):
     comment = Comment.objects.v_comment(request.POST)
@@ -84,4 +83,6 @@ def comment(request, to_user_id):
         user = User.objects.get(id=request.session['user_id'])
         c = Comment.objects.create_comment(request.POST, user)
         print(c.writee.id)
-    return redirect('users:dashboard')
+        print(c.writee.writee_id)
+
+    return redirect('users:show', c.writee.writee_id)

@@ -108,8 +108,6 @@ class CommentManager(models.Manager):
 
     def create_comment(self, form, user):
         to_message_id = Message.objects.get(id=form['id'])
-        print(form)
-        print('8' * 80)
         c = Comment.objects.create(
             writee=to_message_id,
             writer=user,
