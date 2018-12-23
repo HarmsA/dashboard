@@ -27,3 +27,19 @@
     padding: 5px;
     margin-bottom: 5px;
 }
+.edit_first, .edit_password {
+    display: inline-block;
+    width: 42%;
+    margin: 2%;
+    border: 1px solid black;
+    vertical-align: top;
+}
+.edit_first form,
+.edit_password form {
+    padding: 5%;
+}
+.edit_first form input,
+.edit_password form input {
+    margin-bottom: 5%;
+}
+

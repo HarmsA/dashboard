@@ -86,3 +86,27 @@ def comment(request, to_user_id):
         print(c.writee.writee_id)
 
     return redirect('users:show', c.writee.writee_id)
+
+def edit_profile(request):
+    errors = User.objects.v_profile_change(request.POST, request.session['user_id'])
+    print(errors)
+    if errors[0]:
+        for error in errors[0]:
+            messages.error(request, error)
+        return redirect('users:profile')
+    # else:
+        # change = User.objects.get()
+    return redirect('users:dashboard')
+
+def edit_password(request):
+    pass
+
+def edit_description(request):
+    pass
+
+def profile(request):
+    user = User.objects.get(id=request.session['user_id'])
+    context = {
+        'user':user
+    }
+    return render(request, 'users/edit.html', context)

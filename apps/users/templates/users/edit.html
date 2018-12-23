@@ -3,9 +3,60 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<h1>Edit profile</h1>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="edit_first">
+    <form action="{% url 'users:edit_profile' %}" method="post">
+    {% csrf_token %}
+        <h4>Edit Information</h4>
+        <label for="f_name">First Name:</label>
+        <input type="text" name="f_name" value="{{ user.f_name }}"><br>
 
-    
-    
-    
+        <label for="l_name">Last Name:</label>
+        <input type="text" name="l_name" value="{{ user.l_name }}"><br>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" value="{{ user.email }}"><br>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<div class="edit_password">
+
+    <form action="{% url 'users:edit_password' %}" method="post">
+        {% csrf_token %}
+        <h4>Edit Password</h4>
+
+
+        <label for="password">Password:</label>
+        <input type="password" name="password"><br>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" name="confirm_password"><br>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<div class="edit_description">
+
+    <form action="{% url 'users:edit_description' %}" method="post">
+        {% csrf_token %}
+        <h4>Edit Personal description</h4>
+
+        <label for="personal_description">Edit description:</label>
+        <textarea name="personal_description" id="" cols="100" rows="5">{{ user.description }}</textarea>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+
     
 {% endblock %}

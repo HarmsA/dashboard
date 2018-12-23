@@ -27,8 +27,8 @@ class UserManager(models.Manager):
             errors.append('First name must be filled out.')
         if len(form['l_name'])<1:
             errors.append('Last name must be filled out.')
-        if len(form['email'])<1:
-            errors.append('Email name must be filled out.')
+        # if len(form['email'])<1:
+        #     errors.append('Email name must be filled out.')
         try:
             user = User.objects.get(email=form['email'])
             errors.append('Email aready in use, Please use another.')
@@ -42,6 +42,30 @@ class UserManager(models.Manager):
             errors.append('Password must match the Confirm password')
         return errors
 
+    def v_profile_change(self, form, user_id):
+        user = User.objects.get(id=user_id)
+        # print(form['email'])
+        # print(user.email)
+        # print('email length = ', len(form['email']))
+        errors = []
+        if len(form['f_name'])<1:
+            errors.append('First name must be filled out.')
+        if len(form['l_name'])<1:
+            errors.append('Last name must be filled out.')
+        if form['email'] == user.email:
+            print('Email is equal')
+        elif len(form['email'])<1:
+            errors.append('Email must be filled out.')
+        elif len(form['email']) > 1 and not EMAIL_REGEX.match(form['email']):
+            errors.append('Not a valid email address.')
+            # print('not valid')
+        else:
+            try:
+                user = User.objects.get(email=form['email'])
+                errors.append('Email aready in use, Please use another.')
+            except:
+                pass
+        return (errors, user)
 
     def register(self, form):
         pw_hash = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt())
