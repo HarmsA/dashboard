@@ -4,7 +4,6 @@
 
 {% block content %}
 <h1>Dashboard</h1>
-    {% for user in users %}
     <table class="table">
         <thead>
             <tr>
@@ -16,6 +15,7 @@
             </tr>
         </thead>
         <tbody>
+    {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
                 <td><a href="{% url 'users:show' user.id %}">{{ user.f_name }} {{ user.l_name }}</a></td>
@@ -24,10 +24,10 @@
                 <td>{{ user.admin }}</td>
             </tr>
         </tbody>
+    {% endfor %}
     </table>
 
 
-    {% endfor %}
 
 {% endblock %}
 

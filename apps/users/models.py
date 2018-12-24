@@ -63,14 +63,23 @@ class UserManager(models.Manager):
 
     def register(self, form):
         pw_hash = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt())
-        print(pw_hash)
-        print('8'*80)
+        num_users = User.objects.all()
+        x=0
+        for user in num_users:
+            x+=1
+
+        if x==0:
+            admin = True
+        else:
+            admin = False
+
 
         userinfo = self.create(
             f_name=form['f_name'],
             l_name=form['l_name'],
             email=form['email'],
-            password=pw_hash
+            password=pw_hash,
+            admin=admin
         )
         print('8'*80)
         print(userinfo)

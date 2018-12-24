@@ -42,4 +42,10 @@
 .edit_password form input {
     margin-bottom: 5%;
 }
-
+#add_user, #manage_user {
+    display: inline-block;
+}
+#add_user {
+    margin-bottom: 8px;
+    margin-left: 50%;
+}

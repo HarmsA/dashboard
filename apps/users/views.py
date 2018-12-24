@@ -129,7 +129,7 @@ def logout(request):
 def delete_user(request, delete_user_id):
     print(delete_user_id)
     user = User.objects.get(id=delete_user_id)
-
+    user.delete()
     return redirect('users:admin')
 
 
