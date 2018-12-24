@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 id="manage_user">Manage Users</h1>
-    <a href="#" id="add_user" class="btn btn-success">Add User</a>
+    <a href="{% url 'users:add_user' %}" id="add_user" class="btn btn-success">Add User</a>
 
 <table class="table">
     <thead>

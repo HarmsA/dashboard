@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^delete_user/(?P<delete_user_id>\d+)/$', views.delete_user, name='delete_user'),
 
     url(r'^admin/$', views.admin, name='admin'),
+    url(r'^add_user/$', views.add_user, name='add_user'),
+    url(r'^admin_register_process/$', views.admin_register_process, name='admin_register_process'),
     url(r'^admin_edit/(?P<edit_user_id>\d+)/$', views.admin_edit, name='admin_edit'),
     url(r'^admin_edit_profile/(?P<edit_user_id>\d+)/$', views.admin_edit_profile, name='admin_edit_profile'),
     url(r'^admin_edit_password/(?P<edit_user_id>\d+)/$', views.admin_edit_password, name='admin_edit_password'),

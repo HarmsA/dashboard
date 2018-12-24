@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="062c744b-a534-44d2-aca7-3b3b4c1dcf67" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/users/templates/users/admin_add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/static/users/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/static/users/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/users/templates/users/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/templates/users/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/templates/users/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/templates/users/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -20,11 +21,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.54083097">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/users/templates/users/dashboard.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="416">
-                  <caret line="26" column="16" selection-start-line="26" selection-end-line="27" />
+                <state relative-caret-position="272">
+                  <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="27" />
                 </state>
               </provider>
             </entry>
@@ -33,7 +34,7 @@
             <entry file="file://$PROJECT_DIR$/apps/users/urls.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="384">
-                  <caret line="24" column="46" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="46" />
+                  <caret line="24" column="96" selection-start-line="24" selection-start-column="96" selection-end-line="24" selection-end-column="96" />
                   <folding>
                     <element signature="e#0#32#0" expanded="true" />
                   </folding>
@@ -41,11 +42,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/apps/users/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="448">
-                  <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+                <state relative-caret-position="673">
+                  <caret line="183" column="39" selection-start-line="183" selection-start-column="39" selection-end-line="183" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                   </folding>
@@ -53,11 +54,20 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="admin_add.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin_add.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="208">
+                  <caret line="13" column="54" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="54" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="admin_edit.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin_edit.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="192">
-                  <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+                <state relative-caret-position="416">
+                  <caret line="26" selection-start-line="26" selection-end-line="30" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -65,8 +75,8 @@
           <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+                <state relative-caret-position="112">
+                  <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -105,8 +115,8 @@
           <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/apps/users/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="256">
-                  <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+                <state relative-caret-position="448">
+                  <caret line="169" column="23" selection-start-line="169" selection-start-column="23" selection-end-line="169" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -143,12 +153,13 @@
         <option value="$PROJECT_DIR$/apps/users/templates/users/register.html" />
         <option value="$PROJECT_DIR$/apps/users/templates/users/base.html" />
         <option value="$PROJECT_DIR$/apps/users/templates/users/admin_edit.html" />
+        <option value="$PROJECT_DIR$/apps/users/static/users/main.css" />
+        <option value="$PROJECT_DIR$/apps/users/templates/users/dashboard.html" />
+        <option value="$PROJECT_DIR$/apps/users/templates/users/admin.html" />
+        <option value="$PROJECT_DIR$/apps/users/templates/users/admin_add.html" />
         <option value="$PROJECT_DIR$/apps/users/urls.py" />
         <option value="$PROJECT_DIR$/apps/users/views.py" />
-        <option value="$PROJECT_DIR$/apps/users/templates/users/admin.html" />
-        <option value="$PROJECT_DIR$/apps/users/static/users/main.css" />
         <option value="$PROJECT_DIR$/apps/users/models.py" />
-        <option value="$PROJECT_DIR$/apps/users/templates/users/dashboard.html" />
       </list>
     </option>
   </component>
@@ -306,7 +317,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14669926" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13753057" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -426,23 +437,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/users/static/users/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="784">
@@ -450,10 +444,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin.html">
+    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="272">
+          <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -464,30 +458,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/models.py">
+    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+        <state relative-caret-position="112">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" selection-start-line="26" selection-end-line="30" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/users/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="24" column="96" selection-start-line="24" selection-start-column="96" selection-end-line="24" selection-end-column="96" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/admin_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/users/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+        <state relative-caret-position="673">
+          <caret line="183" column="39" selection-start-line="183" selection-start-column="39" selection-end-line="183" selection-end-column="39" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/templates/users/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/apps/users/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="26" column="16" selection-start-line="26" selection-end-line="27" />
+        <state relative-caret-position="448">
+          <caret line="169" column="23" selection-start-line="169" selection-start-column="23" selection-end-line="169" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

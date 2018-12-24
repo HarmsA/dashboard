@@ -46,8 +46,8 @@ class UserManager(models.Manager):
             errors.append('First name must be filled out.')
         if len(form['l_name'])<1:
             errors.append('Last name must be filled out.')
-        # if len(form['email'])<1:
-        #     errors.append('Email name must be filled out.')
+        if len(form['email'])<1:
+            errors.append('Email name must be filled out.')
         try:
             user = User.objects.get(email=form['email'])
             errors.append('Email aready in use, Please use another.')
@@ -161,6 +161,22 @@ class UserManager(models.Manager):
             user.admin = admin
             user.save()
         return errors
+
+    def admin_register(self, form):
+        pw_hash = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt())
+        if form['admin'] == 'True':
+            admin=True
+        else:
+            admin=False
+
+        userinfo = self.create(
+            f_name=form['f_name'],
+            l_name=form['l_name'],
+            email=form['email'],
+            password=pw_hash,
+            admin=admin
+        )
+        return userinfo
 
 
 class User(models.Model):

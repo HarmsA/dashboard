@@ -166,4 +166,23 @@ def admin_edit_password(request, edit_user_id):
             messages.error(request, error)
         return redirect('users:admin_edit', edit_user_id)
     return redirect('users:dashboard')
+
+def add_user(request):
+    admin = User.objects.get(id=request.session['user_id'])
+    if admin:
+        context = {
+            'title':'Add User'
+        }
+        return render(request, 'users/admin_add.html', context)
+    return redirect('users:dashboard')
+
+def admin_register_process(request):
+    errors = User.objects.v_register(request.POST)
+    if errors:
+        for error in errors:
+            messages.error(request, error)
+        return redirect('users:add_user')
+    else:
+        User.objects.admin_register(request.POST)
+    return redirect('users:admin')
 # --------------------------------------------------------------
