@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .models import User, Comment, Message
 from django.contrib import messages
 
-# Create your views here.
+
+# ------- LOGIN - CREATE USER - NO ADMIN-----------------------
 def login(request):
     context = {
         'title':'Login'
@@ -33,33 +34,29 @@ def register_process(request):
         return redirect('users:register')
     else:
         user = User.objects.register(request.POST)
-        print('8'*80)
-        print(user)
         request.session['user_id']=user.id
     return redirect('users:dashboard')
 
+
+# --------- DASHBOARD - COMMENTS- POSTS -------------------
 def dashboard(request):
     if 'user_id' in request.session:
         users = User.objects.all()
         context = {
             'users':users,
             'title':'Users'
-
         }
+        user = User.objects.get(id=request.session['user_id'])
+        if user.admin:
+            return redirect('users:admin')
         return render(request, 'users/dashboard.html', context)
     return redirect('users:login')
 
 def show(request, user_id):
-    print(user_id)
     writee = User.objects.get(id=user_id)
-    # print('8'*80)
-    # print('writee = ',writee)
     writer = User.objects.get(id=request.session['user_id'])
-    # print('writer = ', writer)
     m = Message.objects.filter(writee=writee)
-    # print('m = ', m)
     n=Comment.objects.all()
-    # print('n = ', n)
     context = {
         'user':writee,
         'writer':writer,
@@ -87,6 +84,8 @@ def comment(request, to_user_id):
 
     return redirect('users:show', c.writee.writee_id)
 
+
+# --------USER EDIT/UPDATE/VIEW-------------------------------------
 def edit_profile(request):
     errors = User.objects.v_profile_change(request.POST, request.session['user_id'])
     print(errors)
@@ -99,10 +98,20 @@ def edit_profile(request):
     return redirect('users:dashboard')
 
 def edit_password(request):
-    pass
+    errors = User.objects.v_password_change(request.POST, request.session['user_id'])
+    if errors:
+        for error in errors:
+            messages.error(request, error)
+        return redirect('users:profile')
+    return redirect('users:dashboard')
 
 def edit_description(request):
-    pass
+    errors = User.objects.v_description_change(request.POST, request.session['user_id'])
+    if errors:
+        for error in errors:
+            messages.error(request, error)
+        return redirect('users:profile')
+    return redirect('users:dashboard')
 
 def profile(request):
     user = User.objects.get(id=request.session['user_id'])
@@ -110,3 +119,51 @@ def profile(request):
         'user':user
     }
     return render(request, 'users/edit.html', context)
+
+
+# --------LOGOUT - DELETE ------------------------------------------
+def logout(request):
+    request.session.clear()
+    return redirect('users:login')
+
+def delete_user(request, delete_user_id):
+    print(delete_user_id)
+    user = User.objects.get(id=delete_user_id)
+
+    return redirect('users:admin')
+
+
+# ----------ADMIN AREA-------------------------------------
+def admin(request):
+    users = User.objects.all()
+    context = {
+        'users': users,
+        'title': 'Admin Users'
+    }
+    return render(request, 'users/admin.html', context)
+
+def admin_edit(request, edit_user_id):
+    user = User.objects.get(id=edit_user_id)
+    context = {
+        'user': user
+    }
+    return render(request, 'users/admin_edit.html', context)
+
+def admin_edit_profile(request, edit_user_id):
+    errors = User.objects.admin_edit_profile(request.POST, edit_user_id)
+    if errors:
+        for error in errors:
+            messages.error(request, error)
+        return redirect('users:admin_edit', edit_user_id)
+    return redirect('users:dashboard')
+
+def admin_edit_password(request, edit_user_id):
+    print(request.POST)
+    print('8'*80)
+    errors = User.objects.v_password_change(request.POST, edit_user_id)
+    if errors:
+        for error in errors:
+            messages.error(request, error)
+        return redirect('users:admin_edit', edit_user_id)
+    return redirect('users:dashboard')
+# --------------------------------------------------------------

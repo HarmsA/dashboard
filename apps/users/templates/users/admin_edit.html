@@ -1,0 +1,54 @@
+{% extends 'users/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>Edit profile</h1>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="edit_first">
+    <form action="{% url 'users:admin_edit_profile' user.id %}" method="post">
+    {% csrf_token %}
+        <h4>Edit Information</h4>
+        <label for="f_name">First Name:</label>
+        <input type="text" name="f_name" value="{{ user.f_name }}"><br>
+
+        <label for="l_name">Last Name:</label>
+        <input type="text" name="l_name" value="{{ user.l_name }}"><br>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" value="{{ user.email }}"><br>
+
+        <label for="admin">User Level</label>
+        <select name="admin" id="">
+            <option value="False">Normal</option>
+            <option value="True">Admin</option>
+        </select><br><br>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<div class="edit_password">
+
+    <form action="{% url 'users:admin_edit_password' user.id %}" method="post">
+        {% csrf_token %}
+        <h4>Edit Password</h4>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password"><br>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" name="confirm_password"><br>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+
+{% endblock %}

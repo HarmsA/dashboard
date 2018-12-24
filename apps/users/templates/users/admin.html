@@ -1,0 +1,35 @@
+{% extends 'users/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+    {% for user in users %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created Date</th>
+                <th>Admin</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user.id }}</td>
+                <td><a href="{% url 'users:show' user.id %}">{{ user.f_name }} {{ user.l_name }}</a></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>{{ user.admin }}</td>
+                <td><a href="{% url 'users:admin_edit' user.id %}" class="btn btn-info">Edit</a>  <a href="{% url 'users:delete_user' user.id %}" class="btn btn-danger "> Remove</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    {% endfor %}
+
+{% endblock %}

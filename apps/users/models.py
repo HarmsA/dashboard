@@ -7,6 +7,9 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 # Create your models here.
 class UserManager(models.Manager):
+
+    # ------- login - password- register ----------------------------------
+
     def v_login(self, form):
         errors = []
         try:
@@ -20,6 +23,22 @@ class UserManager(models.Manager):
 
     def login(self):
         pass
+
+    def v_password_change(self, form, user_id):
+        print('8'*80)
+        print('hi')
+        errors = []
+        if len(form['password']) < 2:
+            errors.append('Password is to short.')
+        if form['password'] != form['confirm_password']:
+            errors.append('Password must match the Confirm password')
+        if not errors:
+            pw_hash = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt())
+            user = User.objects.get(id=user_id)
+            user.password = pw_hash
+            user.save()
+        else:
+            return errors
 
     def v_register(self, form):
         errors = []
@@ -41,6 +60,23 @@ class UserManager(models.Manager):
         if form['password'] != form['confirm_password']:
             errors.append('Password must match the Confirm password')
         return errors
+
+    def register(self, form):
+        pw_hash = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt())
+        print(pw_hash)
+        print('8'*80)
+
+        userinfo = self.create(
+            f_name=form['f_name'],
+            l_name=form['l_name'],
+            email=form['email'],
+            password=pw_hash
+        )
+        print('8'*80)
+        print(userinfo)
+        return userinfo
+
+#------- user change profile - discription ----------------------------
 
     def v_profile_change(self, form, user_id):
         user = User.objects.get(id=user_id)
@@ -65,22 +101,58 @@ class UserManager(models.Manager):
                 errors.append('Email aready in use, Please use another.')
             except:
                 pass
+        if not errors:
+            user.f_name=form['f_name']
+            user.l_name=form['l_name']
+            user.email=form['email']
+
+            user.save()
         return (errors, user)
 
-    def register(self, form):
-        pw_hash = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt())
-        print(pw_hash)
-        print('8'*80)
+    def v_description_change(self, form, user_id):
+        errors= []
+        if len(form['personal_description'])<1:
+            errors.append('Must enter something in Description to update.')
+        else:
+            user = User.objects.get(id=user_id)
+            user.description = form['personal_description']
+            user.save()
+        return errors
 
-        userinfo = self.create(
-            f_name=form['f_name'],
-            l_name=form['l_name'],
-            email=form['email'],
-            password=pw_hash
-        )
-        print('8'*80)
-        print(userinfo)
-        return userinfo
+# ---------Admin rights ------------------------------------------------
+    def admin_edit_profile(self, form, user_id):
+        errors = []
+        user = User.objects.get(id=user_id)
+        errors = []
+        if len(form['f_name']) < 1:
+            errors.append('First name must be filled out.')
+        if len(form['l_name']) < 1:
+            errors.append('Last name must be filled out.')
+        if form['email'] == user.email:
+            print('Email is equal')
+        elif len(form['email']) < 1:
+            errors.append('Email must be filled out.')
+        elif len(form['email']) > 1 and not EMAIL_REGEX.match(form['email']):
+            errors.append('Not a valid email address.')
+        else:
+            try:
+                user = User.objects.get(email=form['email'])
+                errors.append('Email aready in use, Please use another.')
+            except:
+                pass
+        if form['admin'] == 'True':
+            print('Admin is True')
+            admin = True
+        else:
+            admin = False
+        if not errors:
+            user.f_name = form['f_name']
+            user.l_name = form['l_name']
+            user.email = form['email']
+            user.admin = admin
+            user.save()
+        return errors
+
 
 class User(models.Model):
     f_name = models.CharField(max_length=50)
