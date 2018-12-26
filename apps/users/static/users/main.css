@@ -49,3 +49,41 @@
     margin-bottom: 8px;
     margin-left: 50%;
 }
+img {
+    height: 200px;
+    display: inline-block;
+    margin-left: 30%;
+    vertical-align: top;
+}
+.show_heading {
+    display: inline-block;
+}
+.rinline_block, .linline_block {
+    display: inline-block;
+    width: 45%;
+    min-height: 100px;
+    vertical-align: top;
+}
+.inline_block table {
+    border: 2px solid black;
+}
+.user_info, .user_description {
+    margin-top: 30px;
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+    min-height: 100px;
+}
+.user_description h3 {
+    margin-top: 0;
+}
+#book_title {
+    font-weight: bolder;
+}
+#book_author {
+    font-style: italic;
+    font-weight: bolder;
+}
+.list-group {
+    padding-top: 20px;
+}

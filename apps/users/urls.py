@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.login, name='login'),
+    url(r'^$', views.dashboard, name='dashboard'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^login_process/$', views.login_process, name='login_process'),
@@ -12,8 +12,10 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^show/(?P<user_id>\d+)/$', views.show, name='show'),
     url(r'^profile/$', views.profile, name='profile'),
+    # url(r'^add_image/$', views.add_image, name='add_image'),
     url(r'^message/(?P<to_user_id>\d+)/$', views.message, name='message'),
     url(r'^comment/(?P<to_user_id>\d+)/$', views.comment, name='comment'),
+    url(r'^search/$', views.search, name='search'),
 
     url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
     url(r'^edit_password/$', views.edit_password, name='edit_password'),

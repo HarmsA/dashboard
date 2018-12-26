@@ -4,30 +4,66 @@
 
 {% block content %}
 <h1>Dashboard</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created Date</th>
-                <th>Admin</th>
-            </tr>
-        </thead>
-        <tbody>
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>ID</th>#}
+{#                <th>Name</th>#}
+{#                <th>Email</th>#}
+{#                <th>Created Date</th>#}
+{#                <th>Admin</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#    {% for user in users %}#}
+{#            <tr>#}
+{#                <td>{{ user.id }}</td>#}
+{#                <td><a href="{% url 'users:show' user.id %}">{{ user.f_name }}#}
+{#                    {{ user.l_name }}</a></td>#}
+{#                <td>{{ user.email }}</td>#}
+{#                <td>{{ user.created_at }}</td>#}
+{#                <td>{{ user.admin }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    {% endfor %}#}
+{#    </table>#}
+{##}
+
+<div class="user_info">
+    Name: {{ logged_in_user.f_name }} {{ logged_in_user.l_name }}<br>
+    Email: {{ logged_in_user.email }}<br>
+</div>
+
+<div class="user_description">
+    <h3>Personal Description</h3>
+    <p>{{ logged_in_user.description }}</p>
+</div>
+    <hr>
+<div class="linline_block">
+    <div class="list-group">
+    <h4>Message a user</h4>
     {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td><a href="{% url 'users:show' user.id %}">{{ user.f_name }} {{ user.l_name }}</a></td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.created_at }}</td>
-                <td>{{ user.admin }}</td>
-            </tr>
-        </tbody>
+       <a href="{% url 'users:show' user.id %}" class="list-group-item">
+           {{ user.f_name }} {{ user.l_name }}</a>
+
+
     {% endfor %}
-    </table>
+    </div>
+</div>
 
 
+<div class="rinline_block">
+<div class="list-group">
+<h4>Review a book</h4>
+    {% for book in books %}
+
+                 <a href="{% url 'books:add_review' book.id %}" class="list-group-item">
+                    <span id="book_title">{{ book.title }}</span>: By- <span id="book_author">{{ book.author.name }}</span></a>
+
+    {% endfor %}
+
+    </div>
+</div>
 
 {% endblock %}
 

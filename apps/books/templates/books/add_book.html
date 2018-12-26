@@ -1,0 +1,62 @@
+{% extends "books/logged_in_template.html" %}
+
+{% block content %}
+    <h3 class="title_of_form">Add a New Book Title and a Review</h3>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="{% url 'books:validate_book_entry' %}" method="post">
+    {% csrf_token %}
+
+    <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">Book Title:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="title">
+        </div>
+    </div>
+
+    <div class="form-group row">
+       <label for="title" class="col-sm-2 col-form-label">Choose author from the list:</label>
+        <div class="col-sm-10">
+            <select name="author" id="">
+                <option value="none" selected></option>
+                {% for author in authors %}
+                    <option value="{{ author.name }}">{{ author.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="new_author" class="col-sm-2 col-form-label">Or add a new author:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="new_author">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Review:</label>
+        <div class="col-sm-10">
+            <textarea type="textarea" class="form-control" name="description"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="rating" class="col-sm-2 col-form-label">Rating:</label>
+        <div class="col-sm-10">
+            <select name="rating" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select> Stars.
+        </div>
+    </div>
+        <input type="submit" value="Add Book and Review">
+    </form>
+{% endblock %}

@@ -186,6 +186,7 @@ class User(models.Model):
     password = models.CharField(max_length=500)
     admin = models.BooleanField(default=False)
     description = models.CharField(default='None', max_length=600)
+    image = models.ImageField(upload_to='profile_image', blank=True)
     created_at = models.DateTimeField(auto_now_add=True,)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()

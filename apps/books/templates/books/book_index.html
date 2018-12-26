@@ -1,0 +1,45 @@
+{% extends "books/logged_in_template.html" %}
+
+{% block content %}
+
+    <h2 class="title_of_form">Welcome, {{ f_name }} To the Books reviewed Home page!</h2>
+
+    <div class="container_lt">
+        <h3>Recent Book Reviews</h3>
+        {% for book in first_three %}
+            {% for review in book.book_reviews.all %}
+            <p id="title">Title: {{ book.title }}</p>
+            <p>Rating:
+                {% if book.rating == 5 %}
+                    * * * * *
+                {% endif %}
+
+                {% if book.rating == 4 %}
+                    * * * *
+                {% endif %}
+                {% if book.rating == 3 %}
+                    * * *
+                {% endif %}
+                {% if book.rating == 2 %}
+                    * *
+                {% endif %}
+                {% if book.rating == 1 %}
+                    *
+                {% endif %}
+            </p>
+            <p>{{ review.user.f_name }} says: <span id="review_content">{{ review.description }}</span></p><br>
+        {% endfor %}
+{% endfor %}
+    </div>
+
+    <div class="container_rt">
+        <h3>Other books with Reviews:</h3>
+        <div class="book_list">
+            {% for book in books reversed %}
+                <a href="{% url 'books:add_review' book.id %}">{{ book.title }}</a><br>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

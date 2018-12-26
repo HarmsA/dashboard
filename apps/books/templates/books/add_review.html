@@ -1,0 +1,73 @@
+{% extends "books/logged_in_template.html" %}
+
+{% block content %}
+
+<div class="book_title">
+    {{ title }}
+    <p>Author: {{ author.name }}</p>
+    <p>Reviews:</p>
+</div>
+
+{% for review in reviews.all %}
+    <div class="review_container">
+        Rating: {% if review.book.rating == 5 %}
+                    * * * * *
+                {% endif %}
+
+                {% if review.book.rating == 4 %}
+                    * * * *
+                {% endif %}
+                {% if review.book.rating == 3 %}
+                    * * *
+                {% endif %}
+                {% if review.book.ratingg == 2 %}
+                    * *
+                {% endif %}
+                {% if review.book.rating == 1 %}
+                    *
+                {% endif %}
+
+        <br>
+{#        <a href="{% url 'users:user_index' user.id %}"></a>{{ review.user.f_name }} {{ review.user.l_name }} Says:#}
+        <span id="reviewer_name">{{ review.user.f_name }} {{ review.user.l_name }} Says:</span>
+        {{ review.description }}<br>
+        <p class="posted_date">Posted on: {{ review.created_at }}</p>
+    {% if review.user.id is user.id %}
+        <a href="{% url 'books:delete' review.id book %}">Delete Review</a>
+    {% endif %}
+        <a href=""></a>
+    </div>
+{% endfor %}
+
+<div class="add_review">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{#    <h3 class="title_of_form">Add a New Book Title and a Review</h3>#}
+    <form action="{% url "books:new_user_review" book %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="description" class="col-form-label">Add a review:</label><br>
+                <textarea name="description" id="" cols="30" rows="7"></textarea>
+        </div>
+        <div class="form-group row">
+            <input type="hidden" name="bookid" value="{{ book }}">
+
+            <label for="rating" class="col-form-label">Rating:</label>
+            <select name="rating" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> Stars.
+        </div>
+        <input type="submit" class="btn" id='submit_review' value="Submit Review">
+    </form>
+</div>
+
+{% endblock %}
