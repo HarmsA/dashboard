@@ -111,6 +111,15 @@ def new_user_review(request, book_id):
     Review.objects.create_review(request.POST, book, context)
     return redirect('books:add_review', request.POST['bookid'])
 
+def authors_books(request, author_id):
+    books = Book.objects.filter(author_id=author_id)
+    author = Author.objects.get(id=author_id)
+    context = {
+        'books':books,
+        'author':author,
+    }
+    return render(request, 'books/authors_books.html', context)
+
 def delete(request, review_id, book_id):
     deletion = Review.objects.get(id=review_id)
     deletion.delete()

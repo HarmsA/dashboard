@@ -32,6 +32,7 @@
 <div class="user_info">
     Name: {{ logged_in_user.f_name }} {{ logged_in_user.l_name }}<br>
     Email: {{ logged_in_user.email }}<br>
+Pic: <img src="{{ logged_in_user.image.url }}">
 </div>
 
 <div class="user_description">

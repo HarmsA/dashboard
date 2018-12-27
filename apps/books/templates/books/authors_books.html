@@ -1,0 +1,16 @@
+{% extends "books/logged_in_template.html" %}
+
+{% block content %}
+
+<h2>All the books with {{ author.name }} as the author.</h2>
+<div class="middle_of_page">
+    <div class="list-group authors_list">
+    <h6>Click on one to read reviews</h6>
+        {% for book in books %}
+            <a href="{% url 'books:add_review' book.id %}" class="list-group-item">{{ book.title }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

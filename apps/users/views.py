@@ -47,6 +47,7 @@ def dashboard(request):
         users = User.objects.all()
         user = User.objects.get(id=request.session['user_id'])
         # print(Book.objects.filter())
+        print('image', user.image)
         books = Book.objects.filter(book_reviews__user__id=request.session['user_id'])
 
         context = {
@@ -105,7 +106,7 @@ def search(request):
     except:
         try:
             author = Author.objects.get(name=request.POST['search'])
-            # return render(request, 'books/authors_books.html', author.id)
+            return redirect('books:authors_books', author.id )
         except:
             error = 'No such name or book exist, spacing and puncuation is required to be the same.'
             messages.error(request, error)
@@ -114,13 +115,10 @@ def search(request):
 # --------USER EDIT/UPDATE/VIEW-------------------------------------
 def edit_profile(request):
     errors = User.objects.v_profile_change(request.POST, request.session['user_id'])
-    print(errors)
     if errors[0]:
         for error in errors[0]:
             messages.error(request, error)
         return redirect('users:profile')
-    # else:
-        # change = User.objects.get()
     return redirect('users:dashboard')
 
 def edit_password(request):
@@ -146,6 +144,10 @@ def profile(request):
     }
     return render(request, 'users/edit.html', context)
 
+# def add_image(request):
+#     form = request.DATA
+#     print(form)
+#     return redirect('users:dashboard')
 
 # --------LOGOUT - DELETE ------------------------------------------
 def logout(request):
@@ -153,7 +155,6 @@ def logout(request):
     return redirect('users:login')
 
 def delete_user(request, delete_user_id):
-    print(delete_user_id)
     user = User.objects.get(id=delete_user_id)
     user.delete()
     return redirect('users:admin')

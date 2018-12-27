@@ -45,6 +45,12 @@
     </form>
 </div>
 
+{#  <form action="{% url 'users:add_image' %}" method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        <h4>Image</h4>#}
+{#        <input type="submit" value="submit">#}
+{#    </form>#}
+
 <div class="edit_description">
 
     <form action="{% url 'users:edit_description' %}" method="post">
